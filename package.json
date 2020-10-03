@@ -1,0 +1,36 @@
+{
+  "name": "financials-access",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "run": "node dist/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "tsc-watch --onSuccess \"npm run run\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jameson693/financials-access.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jameson693/financials-access/issues"
+  },
+  "homepage": "https://github.com/jameson693/financials-access#readme",
+  "dependencies": {
+    "axios": "^0.20.0",
+    "cheerio": "^1.0.0-rc.3",
+    "node-html-parser": "^1.2.21",
+    "typescript": "^4.0.3"
+  },
+  "devDependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/cheerio": "^0.22.22",
+    "@typescript-eslint/eslint-plugin": "^4.3.0",
+    "@typescript-eslint/parser": "^4.3.0",
+    "eslint": "^7.10.0",
+    "tsc-watch": "^4.2.9"
+  }
+}
