@@ -20,7 +20,5 @@ export const formatDataFromTable = (html: string): TableData => {
     }
   }, { headers })
 
-  console.log(rowData)
-
   return rowData
 }

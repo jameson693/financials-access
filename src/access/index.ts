@@ -7,7 +7,6 @@ export type GetDataParams = {
 }
 
 export const getData = async ({ ticker, statement }: GetDataParams): Promise<string> => {
-  console.log('test')
   const url = new UrlBuilder().withTicker(ticker).withStatement(statement).build()
   const result = await axios.get(url)
 
