@@ -1,6 +1,6 @@
 import { parse, HTMLElement } from 'node-html-parser'
 
-interface TableData {
+export type TableData = {
     [key: string]: string[]
 }
 
