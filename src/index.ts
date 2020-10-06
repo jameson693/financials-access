@@ -1,10 +1,8 @@
-import { parse, HTMLElement } from 'node-html-parser' 
-import { getData } from './access' 
-import { formatDataFromTable } from './parse'
+import { getData, GetDataParams } from './access' 
+import { formatDataFromTable, TableData } from './parse'
 
-const res = getData().then((result: string) => {
-//   console.log(result)
-  
-  formatDataFromTable(result)
-
-})
+export default async (params: GetDataParams): Promise<TableData> => {
+  const { ticker, statement } = params
+  const result = await getData({ ticker, statement })
+  return formatDataFromTable(result)
+}
