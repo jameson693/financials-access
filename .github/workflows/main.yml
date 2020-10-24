@@ -38,10 +38,10 @@ jobs:
       # Set git creds
       - name: update file and push to remote
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "Jameson Athanasiou [GH Actions]"
+          git config --global user.email "jameson.athanasiou@gmail.com"
 
-      - name: Publish
-        if: github.ref == 'refs/heads/main'
-        run: npm run release
+      #- name: Publish
+       # if: github.ref == 'refs/heads/main'
+       # run: npm run release
 
