@@ -1,0 +1,20 @@
+{
+  "name": "financials-access",
+  "entries": [
+    {
+      "date": "Sat, 24 Oct 2020 20:18:09 GMT",
+      "tag": "financials-access_v0.0.2",
+      "version": "0.0.2",
+      "comments": {
+        "patch": [
+          {
+            "comment": "fix release process",
+            "author": "jamesonathanasiou@gmail.com",
+            "commit": "867efa8124c4405bee050c31fe46b6f28d6ba1d0",
+            "package": "financials-access"
+          }
+        ]
+      }
+    }
+  ]
+}
