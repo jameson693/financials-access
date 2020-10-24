@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
+    "change": "beachball change -b main",
     "lint": "./node_modules/.bin/eslint src/**/*.ts",
+    "release": "beachball publish -b main --no-publish -t",
     "run": "node dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "tsc-watch --onSuccess \"npm run run\""
@@ -31,6 +33,7 @@
     "@types/cheerio": "^0.22.22",
     "@typescript-eslint/eslint-plugin": "^4.3.0",
     "@typescript-eslint/parser": "^4.3.0",
+    "beachball": "^1.39.1",
     "eslint": "^7.10.0",
     "eslint-plugin-indent-class-properties": "^1.0.3",
     "tsc-watch": "^4.2.9"
