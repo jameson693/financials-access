@@ -1,8 +1,10 @@
 import { getData, GetDataParams } from './access' 
-import { formatDataFromTable, TableData } from './parse'
+import { formatDataFromTable } from './parse'
 
-export default async (params: GetDataParams): Promise<TableData> => {
+const run = async (params: GetDataParams): Promise<string[][]> => {
   const { ticker, statement } = params
   const result = await getData({ ticker, statement })
   return formatDataFromTable(result)
 }
+
+export default run

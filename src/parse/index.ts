@@ -1,24 +1,18 @@
 import { parse, HTMLElement } from 'node-html-parser'
 
-export type TableData = {
-    [key: string]: string[]
-}
+const filterEmpty = (item: string) => item && item.length
 
-export const formatDataFromTable = (html: string): TableData => {
+export const formatDataFromTable = (html: string): string[][] => {
   const root = parse(html)
   const table: HTMLElement = root.querySelector('#fintable')
   const columnHeaders = table.querySelectorAll('th')
-  const headers = columnHeaders.map(header => header.text.trim())
-
+  const headers = columnHeaders.map(header => header.text.trim()).filter(filterEmpty)
   const [ , ...tableRows ] = table.querySelectorAll('tr')
-  const rowTitles = tableRows.map(row => row.firstChild.text)
+  const result = Array.from(Array(tableRows.length)).map((_, index) => {
+    return [
+      ...tableRows[index].querySelectorAll('td').map(row => row.text.trim()).filter(filterEmpty)
+    ]
+  })
 
-  const rowData = tableRows.reduce((acc, currentRow, index) => {
-    return {
-      ...acc,
-      [rowTitles[index]]: currentRow.querySelectorAll('td').map(row => row.text)
-    }
-  }, { headers })
-
-  return rowData
+  return  [ headers, ...result ]
 }
