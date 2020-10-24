@@ -35,6 +35,12 @@ jobs:
       - name: Build
         run: npm run build
 
+      # Set git creds
+      - name: update file and push to remote
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
       - name: Publish
         if: github.ref == 'refs/heads/main'
         run: npm run release
