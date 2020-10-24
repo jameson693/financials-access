@@ -7,7 +7,7 @@
     "build": "tsc",
     "change": "beachball change -b main",
     "lint": "./node_modules/.bin/eslint src/**/*.ts",
-    "release": "beachball publish -b main --no-publish -t",
+    "release": "beachball publish -b main --no-publish -y",
     "run": "node dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "tsc-watch --onSuccess \"npm run run\""
