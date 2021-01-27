@@ -1,35 +1,60 @@
-import { paths } from './constants'
+import { BASE_PATHS } from './constants'
 
-const statementMap = {
-  BalanceSheet: paths.BALANCE_SHEET,
-  CashFlow: paths.CASH_FLOW_STATEMENT,
-  Income: paths.INCOME_STATEMENT
+type SetUrlParams = {
+  hash?: string
+  origin?: string
+  pathname?: string
+  search?: string
 }
 
-export enum Statement {
-  BalanceSheet = 'BalanceSheet',
-  CashFlow = 'CashFlow',
-  Income = 'Income'
+type addQueryAndHashParamsType = {
+  [key: string]: string
 }
+
+const getParamsFromUrl = (params: addQueryAndHashParamsType) =>  Object.entries(params).map(([ key, param ]) => `${key}=${param}`).join('&')
 
 export default class UrlBuilder {
-  url: string
+  url: URL
 
-  constructor() {
-    this.url = paths.BASE
+  constructor(site: string) {
+    const baseUrl: string = BASE_PATHS[site]
+    this.url = new URL(baseUrl)
+  }
+
+  addHash(hashParams: addQueryAndHashParamsType): UrlBuilder {
+    const params = getParamsFromUrl(hashParams)
+    const { search } = this.url
+    const updatedQuery = `${search ? '&' : '#'}${search}${params}`
+    this.setUrl({ search: updatedQuery })
+    return this
+  }
+
+  addPath(path: string): UrlBuilder {
+    const { pathname } = this.url
+    const updatedPath = `${pathname}/${path}`
+    this.setUrl({ pathname: updatedPath })
+    return this
+  }
+
+  addQuery(queryParams: addQueryAndHashParamsType): UrlBuilder {
+    const params = getParamsFromUrl(queryParams)
+    const { search } = this.url
+    const updatedQuery = `${search ? '&' : '?'}${search}${params}`
+    this.setUrl({ search: updatedQuery })
+    return this
   }
 
   build(): string {
-    return this.url
+    return this.url.href
   }
 
-  withTicker(ticker: string): UrlBuilder {
-    this.url = `${this.url}/${ticker}`
-    return this
-  }
-
-  withStatement(statement: Statement): UrlBuilder {
-    this.url = `${this.url}/${statementMap[statement]}`
-    return this
+  setUrl({
+    hash = this.url.hash,
+    origin = this.url.origin,
+    pathname = this.url.origin,
+    search = this.url.origin,
+  }: SetUrlParams): void {
+    const updatedUrl = `${origin}${pathname}${search}${hash}`
+    this.url = new URL(updatedUrl)
   }
 }
